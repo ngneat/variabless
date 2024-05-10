@@ -1,7 +1,20 @@
 {
-  "name": "@ngneat/variabless",
+  "name": "@jsverse/variabless",
   "version": "1.0.1",
   "description": "Transform JS/TS/JSON to css variables 💎",
+  "scripts": {
+    "contributors:add": "all-contributors add",
+    "release": "standard-version --infile ./CHANGELOG.md",
+    "commit": "git-cz",
+    "prebuild": "npm run clean:dist",
+    "build": "tsc",
+    "postbuild": "node ./scripts/post-build.js",
+    "test": "jest",
+    "clean:dist": "rm -rf dist"
+  },
+  "workspaces": [
+    "playground"
+  ],
   "keywords": [
     "css",
     "variables",
@@ -15,16 +28,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "contributors:add": "all-contributors add",
-    "release": "standard-version --infile ./CHANGELOG.md",
-    "commit": "git-cz",
-    "prebuild": "npm run clean:dist",
-    "build": "tsc",
-    "postbuild": "node ./scripts/post-build.js",
-    "test": "jest",
-    "clean:dist": "rm -rf dist"
-  },
   "author": "Shahar Kazaz",
   "license": "MIT",
   "repository": "https://github.com/ngneat/variabless",
@@ -37,6 +40,7 @@
     "command-line-args": "^5.1.1",
     "command-line-usage": "^6.1.1",
     "flat": "^5.0.2",
+    "monaco-editor": "^0.46.0",
     "ora": "^5.1.0",
     "postcss": "^8.1.4",
     "ts-node": "^9.0.0"
@@ -49,8 +53,8 @@
     "@commitlint/config-angular": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/flat": "^5.0.1",
-    "all-contributors-cli": "^6.19.0",
     "@types/jest": "^26.0.19",
+    "all-contributors-cli": "^6.19.0",
     "babel-jest": "^26.6.3",
     "git-cz": "^4.7.1",
     "husky": "^4.3.0",

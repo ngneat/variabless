@@ -1,28 +1,48 @@
-import { fromEvent, Subject } from 'rxjs';
-import { debounceTime, filter, switchMap } from 'rxjs/operators';
+import {fromEvent, Subject} from 'rxjs';
+import {debounceTime, filter, switchMap} from 'rxjs/operators';
 import ts from 'typescript';
 
 // @ts-ignore
-import variablessTypes from '!!raw-loader!@ngneat/variabless/types.d.ts';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { buildVariables } from '@ngneat/variabless/buildVariables';
+import variablessTypes from '@ngneat/variabless/types.d.ts?raw';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {buildVariables} from '@ngneat/variabless/buildVariables';
 import * as monaco from 'monaco-editor';
-import { MarkerSeverity } from 'monaco-editor';
+import {type editor, MarkerSeverity} from 'monaco-editor';
+import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
+import jsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
+import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
+import {exampleCode} from './example';
 
-import { exampleCode } from './example';
+const app = document.getElementById("app");
+self.MonacoEnvironment = {
+  getWorker: function (_, label) {
+    switch (label) {
+      case 'css':
+      case 'scss':
+      case 'less':
+        return cssWorker();
+      case 'typescript':
+      case 'javascript':
+        return jsWorker();
+      default:
+        return editorWorker();
+    }
+  }
+};
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  standalone: true
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   @ViewChild('tsEditor', { static: true }) private tsEditorContainer: ElementRef;
   @ViewChild('cssEditor', { static: true }) private cssEditorContainer: ElementRef;
   animateArrows = false;
   copyText = 'Copy code';
 
-  private tsEditor: monaco.editor.IStandaloneCodeEditor;
+  private tsEditor: editor.IStandaloneCodeEditor;
   private cssEditor: monaco.editor.IStandaloneCodeEditor;
   private previousResult: string;
 
@@ -58,22 +78,22 @@ export class AppComponent implements OnInit {
   }
 
   private listenToValueChanges() {
-    const valueChange = new Subject();
-    const decoratorsChange = new Subject();
-    const observable = decoratorsChange.asObservable();
+    const valueChange = new Subject<void>();
+    const decoratorsChange = new Subject<void>();
+    const decoratorsChange$ = decoratorsChange.asObservable();
+    const valueChange$ = valueChange.asObservable();
     this.tsEditor.onDidChangeModelContent(() => valueChange.next());
     this.tsEditor.onDidChangeModelDecorations(() => decoratorsChange.next());
-    valueChange
-      .asObservable()
+    valueChange$
       .pipe(
-        switchMap(() => observable),
+        switchMap(() => decoratorsChange$),
         debounceTime(500),
         filter(() => {
           const model = this.tsEditor.getModel();
-          if (model === null || model.getModeId() !== 'typescript') {
+          if (model === null || model.id !== 'typescript') {
             return false;
           }
-          const owner = model.getModeId();
+          const owner = model.id;
           const markers = monaco.editor.getModelMarkers({ owner });
 
           return markers.filter(({ severity }) => severity === MarkerSeverity.Error).length === 0;

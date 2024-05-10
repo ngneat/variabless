@@ -3,13 +3,6 @@
  <img width="70%" height="50%" src="./logo.svg">
 </p>
 <p>&nbsp;</p>
-<p align="center">
-    <img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square">
-    <img src="https://img.shields.io/badge/codeof-conduct-ff69b4.svg?style=flat-square">
-    <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e5079.svg?style=flat-square"></a>
-    <a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square"></a>
-</p>
 
 Variabless allows you to manage application-wide CSS styles and variables in a single source of truth manner. 
 Variabless will convert a JS definitions file to CSS variables or classes, allowing you to use those values in JS and CSS files.
@@ -28,7 +21,7 @@ At that point, it was either managing two sets of theme definitions, one in CSS 
 ✅ &nbsp;Webpack Plugin  
 ✅ &nbsp;Easy CSS Rules Creation  
 
-👉 &nbsp;Try it in our [playground](https://ngneat.github.io/variabless/).
+👉 &nbsp;Try it in our [playground](https://jsverse.github.io/variabless/).
 
 ## Table of content
 
@@ -49,8 +42,8 @@ At that point, it was either managing two sets of theme definitions, one in CSS 
 Install the Variabless package via yarn or npm by running:
 
 ```bash
-npm i -D @ngneat/variabless
-yarn add -D @ngneat/variabless
+npm i -D @jsverse/variabless
+yarn add -D @jsverse/variabless
 ```
 
 ## Usage
@@ -353,21 +346,4 @@ body {
 
 ## Contributors ✨
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://github.com/shaharkazaz"><img src="https://avatars2.githubusercontent.com/u/17194830?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shahar Kazaz</b></sub></a><br /><a href="https://github.com/ngneat/variabless/commits?author=shaharkazaz" title="Code">💻</a> <a href="#content-shaharkazaz" title="Content">🖋</a> <a href="#design-shaharkazaz" title="Design">🎨</a> <a href="https://github.com/ngneat/variabless/commits?author=shaharkazaz" title="Documentation">📖</a> <a href="#example-shaharkazaz" title="Examples">💡</a> <a href="#ideas-shaharkazaz" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-shaharkazaz" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/ngneat/variabless/commits?author=shaharkazaz" title="Tests">⚠️</a></td>
-    <td align="center"><a href="https://www.netbasal.com/"><img src="https://avatars1.githubusercontent.com/u/6745730?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Netanel Basal</b></sub></a><br /><a href="https://github.com/ngneat/variabless/commits?author=NetanelBasal" title="Code">💻</a> <a href="#ideas-NetanelBasal" title="Ideas, Planning, & Feedback">🤔</a> <a href="#mentoring-NetanelBasal" title="Mentoring">🧑‍🏫</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+Thank goes to all these wonderful [people who contributed](https://github.com/jsverse/variabless/graphs/contributors) ❤️
